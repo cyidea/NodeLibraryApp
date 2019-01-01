@@ -2,6 +2,7 @@ const express = require('express');
 const { MongoClient } = require('mongodb');
 const debug = require('debug')('app:authRoutes');
 const passport = require('passport');
+const logout = require('express-passport-logout');
 
 const authRouter = express.Router();
 
@@ -44,6 +45,14 @@ function router(nav) {
       failureRedirect: '/'
     }));
   
+    authRouter.route('/signOut')
+    .get(
+      (req, res) => {
+        req.logout();
+        res.redirect('/auth/signIn');
+      }
+    );
+
   authRouter.route('/profile')
     .all((req, res, next) => {
       if (req.user) {

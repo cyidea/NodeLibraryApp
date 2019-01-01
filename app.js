@@ -26,7 +26,9 @@ app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
 const nav = [{ label: 'Book', link: '/books' },
-  { label: 'Author', link: '/authors' }];
+  { label: 'Author', link: '/authors' },
+  { label: 'Logout', link: '/auth/signOut' },
+];
 
 const bookRouter = require('./src/routes/bookRoutes')(nav);
 const adminRouter = require('./src/routes/adminRoutes')(nav);
